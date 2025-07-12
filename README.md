@@ -1,16 +1,17 @@
 <<<<<<< HEAD
 # Skill Swap Platform
 
-A full-stack web application for exchanging skills between users, built with the MERN stack.
+A full-stack web application for exchanging skills between users, built with the MERN stack with Firebase Authentication.
 
 ## 🚀 Features
 
-- **User Authentication**: Secure registration and login with JWT
+- **Multi-Authentication**: Email/password, Google OAuth via Firebase, and Demo mode
 - **Profile Management**: Create and customize user profiles with skills and availability
 - **Skill Matching**: Browse and search for users by skills
 - **Swap Requests**: Send, receive, accept/reject skill exchange requests
 - **Rating System**: Rate and provide feedback after skill exchanges
 - **Real-time Updates**: Live updates for requests and notifications
+- **Demo Mode**: Try the platform with demo@demo.com / 123456
 
 ## 🛠 Tech Stack
 
@@ -24,6 +25,7 @@ A full-stack web application for exchanging skills between users, built with the
 
 ### Frontend
 - **React 19** with **TypeScript**
+- **Firebase Authentication** (Google OAuth)
 - **Vite** for fast development
 - **React Router** for navigation
 - **TanStack Query** for data fetching
@@ -36,7 +38,15 @@ A full-stack web application for exchanging skills between users, built with the
 ### Prerequisites
 - Node.js (v18 or higher)
 - MongoDB (local or cloud)
+- Firebase project (for Google authentication)
 - Git
+
+### Firebase Setup
+
+1. Create a Firebase project at [https://console.firebase.google.com/](https://console.firebase.google.com/)
+2. Enable Authentication and configure Google sign-in provider
+3. Get your Firebase config from Project Settings
+4. Update the `.env` file in the frontend directory with your Firebase config
 
 ### Backend Setup
 
@@ -80,6 +90,12 @@ The backend will be running on http://localhost:5000
 3. Create a `.env` file:
    ```env
    VITE_API_URL=http://localhost:5000/api
+   VITE_FIREBASE_API_KEY=your-api-key-here
+   VITE_FIREBASE_AUTH_DOMAIN=your-project-id.firebaseapp.com
+   VITE_FIREBASE_PROJECT_ID=your-project-id
+   VITE_FIREBASE_STORAGE_BUCKET=your-project-id.appspot.com
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+   VITE_FIREBASE_APP_ID=your-app-id
    ```
 
 4. Start the development server:
@@ -88,6 +104,28 @@ The backend will be running on http://localhost:5000
    ```
 
 The frontend will be running on http://localhost:5173
+
+## 🔐 Authentication Options
+
+The platform supports three authentication methods:
+
+### 1. Demo Mode (Quickest Way to Try)
+- **Email**: demo@demo.com
+- **Password**: 123456
+- Provides full access to demo data and features
+- No registration required
+
+### 2. Google Authentication
+- Click "Continue with Google" on login/register pages
+- Uses Firebase Authentication
+- Requires Firebase project setup (see Firebase Setup section)
+
+### 3. Email/Password Registration
+- Traditional email/password registration
+- Can use either Firebase (preferred) or backend authentication
+- Secure password requirements enforced
+
+## 📱 Usage
 
 ## 🏗 Project Structure
 

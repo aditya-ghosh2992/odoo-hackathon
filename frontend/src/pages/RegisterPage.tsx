@@ -218,6 +218,18 @@ export default function RegisterPage() {
 
           <div className="text-center">
             <p className="text-sm text-gray-600">
+              Already have an account?{' '}
+              <Link
+                to="/login"
+                className="font-medium text-primary-600 hover:text-primary-500"
+              >
+                Sign in here
+              </Link>
+            </p>
+          </div>
+
+          <div className="text-center">
+            <p className="text-sm text-gray-600">
               By creating an account, you agree to our{' '}
               <a href="#" className="font-medium text-primary-600 hover:text-primary-500">
                 Terms of Service

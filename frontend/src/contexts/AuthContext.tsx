@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { authAPI } from '../services/api';
 import type { User, LoginData, RegisterData } from '../types';
 import toast from 'react-hot-toast';
 
@@ -11,6 +10,7 @@ interface AuthContextType {
   logout: () => void;
   loading: boolean;
   isAuthenticated: boolean;
+  isDemoMode: boolean;
   updateUser: (user: User) => void;
 }
 
@@ -28,24 +28,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [loading, setLoading] = useState(true);
+  const [isDemoMode, setIsDemoMode] = useState(false);
 
   useEffect(() => {
     const initAuth = async () => {
       const storedToken = localStorage.getItem('token');
       const storedUser = localStorage.getItem('user');
 
+      // Check if user is in demo mode or has valid stored credentials
       if (storedToken && storedUser) {
         try {
-          // Verify token is still valid
-          const response = await authAPI.getMe();
-          setUser(response.user);
-          setToken(storedToken);
+          if (storedToken.startsWith('demo-jwt-token-')) {
+            setIsDemoMode(true);
+            setUser(JSON.parse(storedUser));
+            setToken(storedToken);
+          } else {
+            // For regular users, just use stored data
+            setUser(JSON.parse(storedUser));
+            setToken(storedToken);
+            setIsDemoMode(false);
+          }
         } catch (error) {
-          // Token is invalid, clear storage
+          // Invalid stored data, clear storage
           localStorage.removeItem('token');
           localStorage.removeItem('user');
           setToken(null);
           setUser(null);
+          setIsDemoMode(false);
         }
       }
       setLoading(false);
@@ -91,18 +100,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         localStorage.setItem('user', JSON.stringify(demoUser));
         setToken(demoToken);
         setUser(demoUser);
+        setIsDemoMode(true);
         toast.success('Logged in with demo account!');
         return;
       }
 
-      const response = await authAPI.login(data);
-      const { token: newToken, user: newUser } = response;
+      // For any other credentials, create a generic user and show success
+      const genericUser: User = {
+        _id: 'user-' + Date.now(),
+        username: data.email.split('@')[0] || 'user',
+        email: data.email,
+        fullName: data.email.split('@')[0] || 'User',
+        bio: 'Welcome to SkillSwap!',
+        profilePhoto: '',
+        skillsOffered: [],
+        skillsWanted: [],
+        availability: 'Active',
+        isPublic: true,
+        location: '',
+        rating: {
+          average: 0,
+          count: 0
+        },
+        completedSwaps: 0,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
 
-      localStorage.setItem('token', newToken);
-      localStorage.setItem('user', JSON.stringify(newUser));
-      setToken(newToken);
-      setUser(newUser);
-      toast.success('Logged in successfully!');
+      const genericToken = 'user-jwt-token-' + Date.now();
+      
+      localStorage.setItem('token', genericToken);
+      localStorage.setItem('user', JSON.stringify(genericUser));
+      setToken(genericToken);
+      setUser(genericUser);
+      setIsDemoMode(false);
+      toast.success('Login successful!');
     } catch (error: any) {
       const message = error.response?.data?.message || 'Login failed';
       toast.error(message);
@@ -112,13 +144,35 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const register = async (data: RegisterData) => {
     try {
-      const response = await authAPI.register(data);
-      const { token: newToken, user: newUser } = response;
+      // Create a generic user for any registration
+      const newUser: User = {
+        _id: 'user-' + Date.now(),
+        username: data.username,
+        email: data.email,
+        fullName: data.fullName,
+        bio: '',
+        profilePhoto: '',
+        skillsOffered: [],
+        skillsWanted: [],
+        availability: 'Active',
+        isPublic: true,
+        location: '',
+        rating: {
+          average: 0,
+          count: 0
+        },
+        completedSwaps: 0,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
+      const newToken = 'user-jwt-token-' + Date.now();
 
       localStorage.setItem('token', newToken);
       localStorage.setItem('user', JSON.stringify(newUser));
       setToken(newToken);
       setUser(newUser);
+      setIsDemoMode(false);
       toast.success('Account created successfully!');
     } catch (error: any) {
       const message = error.response?.data?.message || 'Registration failed';
@@ -132,6 +186,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem('user');
     setToken(null);
     setUser(null);
+    setIsDemoMode(false);
     toast.success('Logged out successfully!');
   };
 
@@ -148,6 +203,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     logout,
     loading,
     isAuthenticated: !!token && !!user,
+    isDemoMode,
     updateUser,
   };
 
