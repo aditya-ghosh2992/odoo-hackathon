@@ -9,6 +9,11 @@
 - *Hackathon*: Odoo Hackathon 2025
 - *Hackathon Problem Statement*: Skill Swap Platform
 
+  ## 🎥 Project Demo
+**Video Demo Link**: [https://drive.google.com/file/d/16_hE4FCy1r2jPmvxFlfmiLVOsz0xtqfl/view?usp=sharing]
+
+**RESPONSIVE Demo Link**: [https://drive.google.com/file/d/1Gh2cOXW93Gwe5QSIHXHCYZepUPAoS5cg/view?usp=sharing]
+
 ## 🎯 Problem Statement Description
 
 In today's rapidly evolving digital landscape, professionals and enthusiasts often find themselves with skills they want to share and simultaneously need to learn new skills to advance their careers or pursue their passions. Traditional learning methods can be expensive, impersonal, and lack the practical, hands-on experience that comes from peer-to-peer learning.
@@ -23,8 +28,6 @@ In today's rapidly evolving digital landscape, professionals and enthusiasts oft
 *Our Solution:*
 SkillSwap Platform - A modern, community-driven skill exchange platform where users can trade their expertise with others, fostering a collaborative learning environment while building meaningful professional connections.
 
-## 🎥 Project Demo
-*Video Demo Link*: [Insert your demo video link here]
 
 ## 📋 Project Overview
 
