@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Skill Swap Platform
 
 A full-stack web application for exchanging skills between users, built with the MERN stack.
@@ -181,3 +182,6 @@ This project is licensed under the MIT License.
 ## 🙏 Acknowledgments
 
 Built for hackathon participants looking to create a skill-sharing platform!
+=======
+# odoo-hackathon
+>>>>>>> 76b8fd70192b8ed0917281af6f66b3299b6eb6dd
