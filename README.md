@@ -89,7 +89,7 @@ SkillSwap is a comprehensive platform that enables users to exchange skills and 
 
 ## 📁 Project Structure
 
-
+```
 skill-swap-platform/
 ├── backend/                    # Node.js Backend
 │   ├── models/                # Database models
@@ -142,24 +142,24 @@ skill-swap-platform/
 │
 ├── README.md                  # Project documentation
 └── .gitignore                # Git ignore rules
-
+```
 
 ## 🚀 Installation & Setup
 
 ### Prerequisites
-- *Node.js*: v16.0.0 or higher
-- *npm*: v7.0.0 or higher  
-- *MongoDB*: v4.4 or higher (local or cloud)
-- *Git*: For version control
+- **Node.js**: v16.0.0 or higher
+- **npm**: v7.0.0 or higher  
+- **MongoDB**: v4.4 or higher (local or cloud)
+- **Git**: For version control
 
 ### Step 1: Clone Repository
-bash
+```bash
 git clone https://github.com/aditya-ghosh2992/odoo-hackathon.git
 cd odoo-hackathon
-
+```
 
 ### Step 2: Backend Setup
-bash
+```bash
 # Navigate to backend directory
 cd backend
 
@@ -174,10 +174,10 @@ cp .env.example .env
 # MONGODB_URI=mongodb://localhost:27017/skillswap
 # JWT_SECRET=your_super_secret_jwt_key_here_make_it_long_and_complex
 # NODE_ENV=development
-
+```
 
 ### Step 3: Frontend Setup
-bash
+```bash
 # Navigate to frontend directory
 cd ../frontend
 
@@ -189,61 +189,61 @@ cp .env.example .env
 
 # Edit .env file:
 # VITE_API_URL=http://localhost:5000/api
-
+```
 
 ### Step 4: Database Setup
-bash
+```bash
 # Start MongoDB service (if running locally)
 mongosh
 
 # Or use MongoDB Atlas for cloud database
 # Update MONGODB_URI in backend/.env accordingly
-
+```
 
 ### Step 5: Start Development Servers
 
-*Terminal 1 - Backend:*
-bash
+**Terminal 1 - Backend:**
+```bash
 cd backend
 npm start
 # Server will start on http://localhost:5000
+```
 
-
-*Terminal 2 - Frontend:*
-bash
+**Terminal 2 - Frontend:**
+```bash
 cd frontend
 npm run dev
 # Application will start on http://localhost:5173
-
+```
 
 ### Step 6: Access Application
-- *Frontend*: http://localhost:5173
-- *Backend API*: http://localhost:5000/api
-- *Demo Account*: demo@demo.com / 123456
+- **Frontend**: http://localhost:5173
+- **Backend API**: http://localhost:5000/api
+- **Demo Account**: demo@demo.com / 123456
 
 ## 🎮 How to Use
 
-### 1. *Getting Started*
+### 1. **Getting Started**
 - Visit the application URL
 - Use demo account (demo@demo.com / 123456) or register new account
 - Complete your profile with skills and preferences
 
-### 2. *Finding Skills*
+### 2. **Finding Skills**
 - Navigate to "Browse Skills" page
 - Use search filters to find users with desired skills
 - View detailed user profiles and ratings
 
-### 3. *Making Swap Requests*
+### 3. **Making Swap Requests**
 - Click "Request Skill Swap" on user profiles
 - Fill out the swap request form with details
 - Specify what you offer and what you want to learn
 
-### 4. *Managing Swaps*
+### 4. **Managing Swaps**
 - Check "My Swaps" for sent and received requests
 - Accept/reject incoming requests
 - Track ongoing and completed swaps
 
-### 5. *Building Reputation*
+### 5. **Building Reputation**
 - Complete skill swaps successfully
 - Provide honest feedback and ratings
 - Build your profile with testimonials
@@ -251,24 +251,24 @@ npm run dev
 ## 🔧 API Documentation
 
 ### Authentication Endpoints
-http
+```http
 POST /api/auth/register       # Register new user
 POST /api/auth/login          # Login user
 GET /api/auth/me              # Get current user
 POST /api/auth/change-password # Change password
-
+```
 
 ### User Management Endpoints
-http
+```http
 GET /api/users                # Get all users
 GET /api/users/:id            # Get user by ID
 PUT /api/users/profile        # Update user profile
 POST /api/users/upload-photo  # Upload profile photo
 GET /api/users/search         # Search users by skills
-
+```
 
 ### Swap Request Endpoints
-http
+```http
 POST /api/swaps/request       # Create swap request
 GET /api/swaps/sent           # Get sent requests
 GET /api/swaps/received       # Get received requests
@@ -277,37 +277,29 @@ PUT /api/swaps/:id/reject     # Reject request
 PUT /api/swaps/:id/complete   # Mark as completed
 PUT /api/swaps/:id/feedback   # Submit feedback
 DELETE /api/swaps/:id         # Cancel request
+```
 
-
-## 🧪 Testing
-
-### Demo Mode
-The application includes a comprehensive demo mode with:
-- Pre-populated user profiles with diverse skills
-- Sample skill offerings and requests
-- Mock swap requests and transactions
-- Realistic data for testing all features
 
 ### Test Credentials
-- *Demo Account*: demo@demo.com / 123456
-- *Regular Login*: Any email/password combination works for testing
+- **Demo Account**: demo@demo.com / 123456
+- **Regular Login**: Any email/password combination works for testing
 
 ## 🚀 Deployment
 
 ### Frontend Deployment (Vercel/Netlify)
-bash
+```bash
 npm run build
 # Deploy dist/ folder to your hosting service
-
+```
 
 ### Backend Deployment (Railway/Render/DigitalOcean)
-bash
+```bash
 # Set environment variables on your hosting platform
 # Deploy using Git or Docker
-
+```
 
 ### Environment Variables for Production
-bash
+```bash
 # Backend
 PORT=5000
 MONGODB_URI=your_production_mongodb_uri
@@ -316,6 +308,7 @@ NODE_ENV=production
 
 # Frontend
 VITE_API_URL=your_production_api_url
+```
 
 
 ## 🤝 Contributing
